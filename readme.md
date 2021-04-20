@@ -12,6 +12,12 @@ references to both and the necessary secrets.
 * [conectFF](connectFF), open default web browser into Firefly.
 * [conectPHP](connectPHP),  open default web browser into phpMyAdmin.
 
+# Minikube
+
+Please, refer to minikube web page for instructions on how to get minikube running on macOS
+
+https://minikube.sigs.k8s.io/docs/start/
+
 # Backup automation
 
 To automate database backups the following file (crey is me, feel free to change it)
