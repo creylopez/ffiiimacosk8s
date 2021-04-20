@@ -1,0 +1,36 @@
+# Firefly III k8s on macOS Big Sur
+
+Files needed to run Firefly III in Kubernetes (minikube) on macOS BitSur
+
+* [mysql.yaml](mysql.yaml), to create a MySQL database.
+* [firefly-iii.yaml](firefly-iii.yaml), to run Firefly III.
+* [kustomization.yaml](kustomization.yaml), containing 
+references to both and the necessary secrets.
+* [firefly-iii-csv.yaml](firefly-iii-csv.yaml), csv importer (not launched, not tested)
+* [phpmyadmin.yaml](phpmyadmin.yaml), phpMyAdmin admin panel.
+* [loginFirefly](loginFirefly), used to login into Firefly contanier for debugging purposes.
+* [conectFF](connectFF), open default web browser into Firefly.
+* [conectPHP](connectPHP),  open default web browser into phpMyAdmin.
+
+# Backup automation
+
+To automate database backups the following file (crey is me, feel free to change it)
+
+    com.crey.fireflyiibackup.plist
+
+needs to be added to
+
+    $HOME/Library/LaunchAgents
+
+and then load it with
+
+    launchctl load com.crey.fireflyiibackup.plist 
+
+Usually, it should start automatically on system reboot
+
+Log files for this script are in /tmp/fireflyiii.err and /tmp/fireflyiii.out
+
+interval is set in seconds in StartInterval:
+
+Source: https://alvinalexander.com/mac-os-x/mac-osx-startup-crontab-launchd-jobs/
+

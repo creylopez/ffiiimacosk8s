@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# PATH to minikube and docker
+
+export PATH=$PATH:/usr/local/bin
+
+# Set minikube environment 
+
+eval $(minikube docker-env)
+
+kubectl exec --stdin --tty `kubectl get pod |grep firefly-iii- | grep -v mysql |cut -f1 -d' '` -- /bin/bash

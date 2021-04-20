@@ -1,0 +1,114 @@
+# Service configured as NodePort for Firefly-III 
+#---
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: firefly-iii
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: firefly-iii
+  labels:
+    app: firefly-iii
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+  selector:
+    app: firefly-iii
+    tier: frontend
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: firefly-iii-upload-claim
+  labels:
+    app: firefly-iii
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firefly-iii
+  labels:
+    app: firefly-iii
+spec:
+  selector:
+    matchLabels:
+      app: firefly-iii
+      tier: frontend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: firefly-iii
+        tier: frontend
+    spec:
+      containers:
+      - image: jc5x/firefly-iii:latest
+        name: firefly-iii
+        env:
+        - name: APP_ENV
+          value: local
+        - name: APP_KEY
+          valueFrom:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: app_key
+        - name: DB_HOST
+          value: firefly-iii-mysql
+        - name: DB_CONNECTION
+          value: mysql
+        - name: DB_DATABASE
+          value: "fireflyiii"
+        - name: DB_USERNAME
+          value: "root"
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: db_password
+        - name: TRUSTED_PROXIES
+          value: "**"
+        - name: MAIL_MAILER
+          value: smtp
+        - name: MAIL_HOST
+          value: "smtp.mail.yahoo.com"
+        - name: MAIL_PORT 
+          value: "465"
+        - name: MAIL_FROM 
+          value: "YOURYAHOOMAIL@HERE"
+        - name: MAIL_USERNAME 
+          valueFrom:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: mail_user
+        - name: MAIL_PASSWORD 
+          valueFrom:
+            secretKeyRef:
+              name: firefly-iii-secrets
+              key: mail_password
+        - name: MAIL_ENCRYPTION 
+          value: "ssl"
+        ports:
+        - containerPort: 8080
+          name: firefly-iii
+        volumeMounts:
+        - mountPath: "/var/www/html/firefly-iii/storage/upload"
+          name: firefly-iii-upload 
+        imagePullPolicy: Always
+      volumes:
+        - name: firefly-iii-upload
+          persistentVolumeClaim:
+            claimName: firefly-iii-upload-claim

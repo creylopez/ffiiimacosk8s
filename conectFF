@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+export NODE_IP=$(minikube ip)
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services firefly-iii)
+
+open http://$NODE_IP:$NODE_PORT

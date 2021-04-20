@@ -1,0 +1,16 @@
+resources:
+  - mysql.yaml
+  - firefly-iii.yaml
+#  - firefly-iii-csv.yaml
+  - phpmyadmin.yaml
+secretGenerator:
+- name: firefly-iii-secrets
+  literals:
+  - db_password=CHANGEME
+  - app_key=CHANGETHISTOYOUR32CHARACTERS_KEY
+  - access_token=CHANGETHISTOYOUR32CHARACTERTOKEN
+  - mail_user=YOURYAHOOMAIL@HERE
+# in yahoo, mail password is not the same as your regular mail password
+# it is what they call an application password. Login into your yahoo settings
+# for mor information.
+  - mail_password=yourmailpasswordhere
