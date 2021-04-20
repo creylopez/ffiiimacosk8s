@@ -36,7 +36,5 @@ Usually, it should start automatically on system reboot
 
 Log files for this script are in /tmp/fireflyiii.err and /tmp/fireflyiii.out
 
-interval is set in seconds in StartInterval:
-
-Source: https://alvinalexander.com/mac-os-x/mac-osx-startup-crontab-launchd-jobs/
+interval is set in seconds in StartInterval.
 
