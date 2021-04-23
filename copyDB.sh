@@ -21,13 +21,11 @@ echo "Current date: $today"
 BACKUP_FOLDER=$HOME/Dockers/fireflyiiik8s/dbbackups
 
 file_name=$BACKUP_FOLDER/bkup_fireflyiii
-new_name=$file_name-$hoy.sql
+new_name=$file_name-$today.sql
 echo "Backup file name: " "$new_name"
 
-# You need to change the password and use the same you set in kustomization.yaml
+docker exec `docker container ls | grep mysql_firefly | cut -f1 -d' '` /usr/bin/mysqldump -u root --password=Rey-1176 fireflyiii > $new_name
 
-docker exec `docker container ls | grep mysql_firefly | cut -f1 -d' '` /usr/bin/mysqldump -u root --password=CHANGEME fireflyiii > $new_name
+message="Backup stored "$today
 
-message="Backup stored "$hoy
-
-$HOME/Dockers/fireflyiiik8s/sendNotification $message
+sudo -u YOURUSERHERE echo $message | mail -s "FireflyIII backup finished" "creylopez@yahoo.es"

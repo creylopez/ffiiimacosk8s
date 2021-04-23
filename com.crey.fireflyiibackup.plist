@@ -6,11 +6,14 @@
   <string>com.crey.fireflyiiibackup</string>
 
   <key>UserName</key>
-  <string>YOURUSERHERE</string>
-  
+  <string>tino</string>
+
+  <key>AbandonProcessGroup</key>
+  <true/>
+
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/YOURUSERHERE/Dockers/fireflyiiik8s/copyDB.sh</string>
+    <string>/Users/YOURHOMEHERE/Dockers/fireflyiiik8s/copyDB.sh</string>
   </array>
 
   <key>Nice</key>
@@ -21,6 +24,9 @@
 
   <key>RunAtLoad</key>
   <true/>
+
+  <key>KeepAlive</key>
+  <false/>
 
   <key>StandardErrorPath</key>
   <string>/tmp/fireflyiii.err</string>

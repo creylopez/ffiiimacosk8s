@@ -1,6 +1,0 @@
-#!/bin/sh
-exec <"$0" || exit; read v; read v; exec /usr/bin/osascript - "$@"; exit
-
-on run {t}
-display notification "" with title t
-end run

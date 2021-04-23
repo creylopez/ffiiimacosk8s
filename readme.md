@@ -9,8 +9,8 @@ references to both and the necessary secrets.
 * [firefly-iii-csv.yaml](firefly-iii-csv.yaml), csv importer (not launched, not tested)
 * [phpmyadmin.yaml](phpmyadmin.yaml), phpMyAdmin admin panel.
 * [loginFirefly](loginFirefly), used to login into Firefly contanier for debugging purposes.
-* [conectFF](connectFF), open default web browser into Firefly.
-* [conectPHP](connectPHP),  open default web browser into phpMyAdmin.
+* [connectFF](connectFF), open default web browser into Firefly.
+* [connectPHP](connectPHP),  open default web browser into phpMyAdmin.
 
 # Minikube
 
@@ -37,4 +37,9 @@ Usually, it should start automatically on system reboot. <== I need to work more
 Log files for this script are in /tmp/fireflyiii.err and /tmp/fireflyiii.out
 
 interval is set in seconds in StartInterval.
+
+copyDB.sh sends a notification via mail. You should configure your postfix accordingly. I used this:
+
+https://www.developerfiles.com/how-to-send-emails-from-localhost-mac-os-x-el-capitan/
+
 
