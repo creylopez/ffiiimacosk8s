@@ -32,7 +32,7 @@ and then load it with
 
     launchctl load com.crey.fireflyiibackup.plist 
 
-Usually, it should start automatically on system reboot
+Usually, it should start automatically on system reboot. <== I need to work more on this. It does not work at system reboot. If I move it to system folders then the shell takes root as owner and it does not find docker.
 
 Log files for this script are in /tmp/fireflyiii.err and /tmp/fireflyiii.out
 
