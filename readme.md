@@ -1,6 +1,6 @@
 # Firefly III k8s on macOS Big Sur
 
-Files needed to run Firefly III in Kubernetes (minikube) on macOS BitSur
+Files needed to run Firefly III in Kubernetes (minikube) on macOS BigSur
 
 * [mysql.yaml](mysql.yaml), to create a MySQL database.
 * [firefly-iii.yaml](firefly-iii.yaml), to run Firefly III.
